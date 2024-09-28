@@ -36,7 +36,7 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+// https://www.youtube.com/watch?v=0kdVU1ENVyw
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -132,7 +132,7 @@ int main(void)
   TxHeader.Identifier = 0x11;
   TxHeader.IdType = FDCAN_STANDARD_ID;
   TxHeader.TxFrameType = FDCAN_DATA_FRAME;
-  TxHeader.DataLength = FDCAN_DLC_BYTES_12;
+  TxHeader.DataLength = FDCAN_DLC_BYTES_8;
   TxHeader.ErrorStateIndicator = FDCAN_ESI_ACTIVE;
   TxHeader.BitRateSwitch = FDCAN_BRS_OFF;
   TxHeader.FDFormat = FDCAN_FD_CAN;
@@ -172,7 +172,7 @@ int main(void)
     	  Error_Handler();
       }
       BSP_LED_Toggle(LED_GREEN);
-      HAL_Delay(1000);
+      HAL_Delay(100);
   }
   /* USER CODE END 3 */
 }
@@ -240,7 +240,7 @@ static void MX_FDCAN1_Init(void)
   /* USER CODE END FDCAN1_Init 1 */
   hfdcan1.Instance = FDCAN1;
   hfdcan1.Init.ClockDivider = FDCAN_CLOCK_DIV2;
-  hfdcan1.Init.FrameFormat = FDCAN_FRAME_FD_NO_BRS;
+  hfdcan1.Init.FrameFormat = FDCAN_FRAME_CLASSIC;
   hfdcan1.Init.Mode = FDCAN_MODE_NORMAL;
   hfdcan1.Init.AutoRetransmission = DISABLE;
   hfdcan1.Init.TransmitPause = DISABLE;
