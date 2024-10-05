@@ -100,7 +100,7 @@ int main(void)
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-
+  uint64_t *x = (uint64_t *) &TxData[0];
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -158,6 +158,7 @@ int main(void)
     Error_Handler();
   }
 
+  for (uint8_t i = 0; i < 8; i++) TxData[i] = 0;
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -166,11 +167,12 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-      sprintf((char*) TxData, "FDCAN1TX %d", indx++);
+      //sprintf((char*) TxData, "FDCAN1TX %d", indx++);
       if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan1, &TxHeader, TxData) != HAL_OK)
       {
     	  Error_Handler();
       }
+      (*x)++;
       BSP_LED_Toggle(LED_GREEN);
       HAL_Delay(100);
   }
